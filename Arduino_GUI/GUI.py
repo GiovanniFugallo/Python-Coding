@@ -3,11 +3,14 @@ import dearpygui.dearpygui as dpg
 
 dpg.create_context()
 
-#Read data from Arduino (Speed):
-#fin quando lo slider è 1 allora leggi altrimenti non leggere più, si fa con un for.
 def Start_Comunication(sender):
     arduino_comunication = serial.Serial("COM3", 9600)
     time.sleep(1)
+
+def Return_To_Initial_Position(sender):
+    print("Motor Return at the Initial Position.")
+    motor_position = 0
+    arduino.write(motor_position)
 
 def Phase1_Control(sender):
     value = dpg.get_value(sender)
@@ -50,14 +53,15 @@ def Phase4_Control(sender):
         print("Error during the comunication of the Phase_4 value!")
 
 with dpg.window(label = "Arduino Comunications", width = 700, heigth = 700):
-    button_1 = dpg.add_button(label = "Start Arduino Comunication", callback = Start_Comunication)
+
+    button_1 = dpg.add_button(label = "Start Arduino Comunication", width = 50, callback = Start_Comunication)
+
     slider_phase1 = dpg.add_slider_int(label = "Phase 1", default_value = 0, max_value = 1, width = 100, callback = Phase1_Control) #around left
     slider_phase2 = dpg.add_slider_int(label = "Phase 2", default_value = 0, max_value = 1, width = 100, callback = Phase2_Control) #around left
     slider_phase3 = dpg.add_slider_int(label = "Phase 3", default_value = 0, max_value = 1, width = 100, callback = Phase3_Control) #around left
     slider_phase4 = dpg.add_slider_int(label = "Phase 4", default_value = 0, max_value = 1, width = 100, callback = Phase4_Control) #around left
 
-    #Inseriamo un nuovo slider per abilitare la lettura della velocità, da 0 a 1.
-    #A seguire va inserito il plot
+    button_2 = dpg.add_button(label = "Return To Initial Position.", width = 50, callback = Return_To_Initial_Position)
 
 dpg.create_viewport(title = "Arduino Simulation GUI!", width = 700, heigth = 700)
 dpg.setup_dearpygui()
