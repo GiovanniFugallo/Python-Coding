@@ -52,7 +52,7 @@ def Phase4_Control(sender):
     else:
         print("Error during the comunication of the Phase_4 value!")
 
-with dpg.window(label = "Arduino Comunications", width = 700, heigth = 700):
+with dpg.window(label = "Arduino Comunications"):
 
     button_1 = dpg.add_button(label = "Start Arduino Comunication", width = 50, callback = Start_Comunication)
 
@@ -63,7 +63,7 @@ with dpg.window(label = "Arduino Comunications", width = 700, heigth = 700):
 
     button_2 = dpg.add_button(label = "Return To Initial Position.", width = 50, callback = Return_To_Initial_Position)
 
-dpg.create_viewport(title = "Arduino Simulation GUI!", width = 700, heigth = 700)
+dpg.create_viewport(title = "Arduino Simulation GUI!", width = 700, height = 700)
 dpg.setup_dearpygui()
 dpg.show_viewport()
 dpg.start_dearpygui()
