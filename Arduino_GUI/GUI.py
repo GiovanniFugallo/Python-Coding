@@ -52,9 +52,9 @@ def Phase4_Control(sender):
     else:
         print("Error during the comunication of the Phase_4 value!")
 
-with dpg.window(label = "Arduino Comunications"):
+with dpg.window(label = "Arduino Comunications", width = 700, height = 350):
 
-    button_1 = dpg.add_button(label = "Start Arduino Comunication", width = 50, callback = Start_Comunication)
+    button_1 = dpg.add_button(label = "Start Arduino Comunication", width = 100, callback = Start_Comunication)
 
     slider_phase1 = dpg.add_slider_int(label = "Phase 1", default_value = 0, max_value = 1, width = 100, callback = Phase1_Control) #around left
     slider_phase2 = dpg.add_slider_int(label = "Phase 2", default_value = 0, max_value = 1, width = 100, callback = Phase2_Control) #around left
